@@ -2,7 +2,42 @@
 const API_URL = 'https://your-backend-app.railway.app/api/contact/';
 // For local testing: const API_URL = 'http://localhost:8000/api/contact/';
 
-// Mobile Menu Toggle
+// ========================================
+// THEME TOGGLE FUNCTIONALITY
+// ========================================
+const themeToggle = document.getElementById('theme-toggle');
+const htmlElement = document.documentElement;
+const themeIcon = themeToggle.querySelector('i');
+
+// Check for saved theme preference or default to 'light'
+const currentTheme = localStorage.getItem('theme') || 'light';
+htmlElement.setAttribute('data-theme', currentTheme);
+updateThemeIcon(currentTheme);
+
+// Theme toggle event listener
+themeToggle.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+});
+
+// Update theme icon based on current theme
+function updateThemeIcon(theme) {
+    if (theme === 'dark') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+}
+
+// ========================================
+// MOBILE MENU TOGGLE
+// ========================================
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
