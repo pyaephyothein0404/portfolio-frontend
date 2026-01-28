@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pyae Phyo Thein - Full-Stack Developer Portfolio">
+    <meta name="author" content="Pyae Phyo Thein">
+    <title>Pyae Phyo Thein - Full-Stack Developer</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-card img {
+            transition: transform 0.5s ease, opacity 0.3s ease;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+        
+        .skill-card {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            max-width: 400px;
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .notification.success {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .notification.error {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 smooth-scroll">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">PPT</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                    <a href="#skills" class="text-gray-700 hover:text-indigo-600 transition">Skills</a>
+                    <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition">Projects</a>
+                    <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition">Experience</a>
+                    <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#home" class="block text-gray-700 hover:text-indigo-600 transition py-2">Home</a>
+                <a href="#about" class="block text-gray-700 hover:text-indigo-600 transition py-2">About</a>
+                <a href="#skills" class="block text-gray-700 hover:text-indigo-600 transition py-2">Skills</a>
+                <a href="#projects" class="block text-gray-700 hover:text-indigo-600 transition py-2">Projects</a>
+                <a href="#experience" class="block text-gray-700 hover:text-indigo-600 transition py-2">Experience</a>
+                <a href="#contact" class="block text-gray-700 hover:text-indigo-600 transition py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+        <div class="container mx-auto text-center fade-in">
+            <div class="mb-6">
+                <img src="assets/images/profile.jpg" alt="Pyae Phyo Thein" 
+                     class="w-40 h-40 rounded-full mx-auto shadow-2xl border-4 border-white object-cover"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22%3E%3Crect width=%22160%22 height=%22160%22 fill=%22%236366f1%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2260%22 fill=%22white%22%3EPPT%3C/text%3E%3C/svg%3E'">
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-4">
+                Hi, I'm <span class="gradient-text">Pyae Phyo Thein</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-6">
+                Full-Stack Developer | Backend Specialist | IT Operations Expert
+            </p>
+            <p class="text-lg text-gray-500 mb-8 max-w-2xl mx-auto">
+                Crafting scalable applications with Python, Django, ASP.NET, and modern web technologies. 
+                Passionate about building production-ready systems and automation solutions.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="#contact" class="btn-primary bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700">
+                    Get In Touch
+                </a>
+                <a href="#projects" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold border-2 border-indigo-600 hover:bg-indigo-50 transition">
+                    View Projects
+                </a>
+            </div>
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="https://github.com/pyaephyothein" target="_blank" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="tel:+66969347540" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="mailto:pyaephyothein@example.com" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-white">
+        <div class="container mx-auto max-w-4xl fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">About Me</h2>
+            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 shadow-lg">
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    I'm a <strong>Full-Stack and Backend Developer</strong> with a strong IT operations background, 
+                    specializing in Python (Django, Flask), ASP.NET (C#), RESTful APIs, and database-driven systems. 
+                    With over 8 years of experience in IT and software development, I've built production-ready applications, 
+                    payment systems, booking platforms, and automation solutions.
+                </p>
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    My expertise spans from building comprehensive preventive maintenance systems to integrating 
+                    payment gateways and developing booking APIs. I excel at creating scalable, secure, and efficient 
+                    solutions that bridge technical requirements with business objectives.
+                </p>
+                <div class="grid md:grid-cols-3 gap-4 mt-8">
+                    <div class="text-center p-4 bg-white rounded-lg shadow">
+                        <div class="text-3xl font-bold text-indigo-600 mb-2">8+</div>
+                        <div class="text-gray-600">Years Experience</div>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-lg shadow">
+                        <div class="text-3xl font-bold text-indigo-600 mb-2">10+</div>
+                        <div class="text-gray-600">Projects Completed</div>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-lg shadow">
+                        <div class="text-3xl font-bold text-indigo-600 mb-2">15+</div>
+                        <div class="text-gray-600">Technologies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Technical Skills</h2>
+            
+            <!-- Backend Development -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">Backend Development</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-python text-4xl text-indigo-600 mb-3"></i>
+                        <p class="font-semibold">Python</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-code text-4xl text-indigo-600 mb-3"></i>
+                        <p class="font-semibold">Django</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-flask text-4xl text-indigo-600 mb-3"></i>
+                        <p class="font-semibold">Flask</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-code text-4xl text-indigo-600 mb-3"></i>
+                        <p class="font-semibold">ASP.NET</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-code-branch text-4xl text-indigo-600 mb-3"></i>
+                        <p class="font-semibold">C#</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-plug text-4xl text-indigo-600 mb-3"></i>
+                        <p class="font-semibold">RESTful API</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frontend Development -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">Frontend Development</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-html5 text-4xl text-orange-600 mb-3"></i>
+                        <p class="font-semibold">HTML5</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-css3-alt text-4xl text-blue-600 mb-3"></i>
+                        <p class="font-semibold">CSS3</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-js text-4xl text-yellow-500 mb-3"></i>
+                        <p class="font-semibold">JavaScript</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-bootstrap text-4xl text-purple-600 mb-3"></i>
+                        <p class="font-semibold">Bootstrap</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-wind text-4xl text-cyan-600 mb-3"></i>
+                        <p class="font-semibold">Tailwind CSS</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Databases -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">Databases</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-database text-4xl text-blue-600 mb-3"></i>
+                        <p class="font-semibold">PostgreSQL</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-database text-4xl text-orange-500 mb-3"></i>
+                        <p class="font-semibold">MySQL</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cloud & DevOps -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">Cloud & DevOps</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-aws text-4xl text-orange-500 mb-3"></i>
+                        <p class="font-semibold">AWS</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-digital-ocean text-4xl text-blue-600 mb-3"></i>
+                        <p class="font-semibold">Digital Ocean</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-git-alt text-4xl text-red-600 mb-3"></i>
+                        <p class="font-semibold">Git</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-github text-4xl text-gray-800 mb-3"></i>
+                        <p class="font-semibold">GitHub</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Networking & IT -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">Networking & IT Operations</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-network-wired text-4xl text-indigo-600 mb-3"></i>
+                        <p class="font-semibold">MikroTik</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fas fa-chart-line text-4xl text-green-600 mb-3"></i>
+                        <p class="font-semibold">Zabbix</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-linux text-4xl text-gray-800 mb-3"></i>
+                        <p class="font-semibold">Linux</p>
+                    </div>
+                    <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center">
+                        <i class="fab fa-windows text-4xl text-blue-600 mb-3"></i>
+                        <p class="font-semibold">Windows</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-white">
+        <div class="container mx-auto fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: PMS -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600">
+                        <img src="assets/images/project-pms.jpg" alt="PMS System" class="w-full h-full object-cover"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><i class=\'fas fa-tools text-white text-6xl\'></i></div>'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Preventive Maintenance System</h3>
+                        <p class="text-gray-600 mb-4">Full-stack web application for managing preventive maintenance, repair requests, and spare-part inventory with role-based access control.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Django</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">PostgreSQL</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">RESTful API</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Oct 2025 - Dec 2025</p>
+                    </div>
+                </div>
+
+                <!-- Project 2: GoorCa API -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden bg-gradient-to-br from-green-500 to-teal-600">
+                        <img src="assets/images/project-goorca.jpg" alt="GoorCa API" class="w-full h-full object-cover"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><i class=\'fas fa-bus text-white text-6xl\'></i></div>'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">GoorCa Transportation API</h3>
+                        <p class="text-gray-600 mb-4">RESTful API for transportation and travel services managing ferry, bus, van routes with dynamic pricing and booking workflows.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">ASP.NET</span>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm">C#</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">MySQL</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Sep 2025</p>
+                    </div>
+                </div>
+
+                <!-- Project 3: Attendance System -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden bg-gradient-to-br from-yellow-500 to-orange-600">
+                        <img src="assets/images/project-attendance.jpg" alt="Attendance System" class="w-full h-full object-cover"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><i class=\'fas fa-clock text-white text-6xl\'></i></div>'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Login & Attendance System</h3>
+                        <p class="text-gray-600 mb-4">Cloud-based attendance tracking system with location verification, photo capture, and automated validation using Google Apps Script.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">Apps Script</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Google Forms</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Automation</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Aug 2025</p>
+                    </div>
+                </div>
+
+                <!-- Project 4: Raja Ferry Integration -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden bg-gradient-to-br from-indigo-500 to-blue-600">
+                        <img src="assets/images/project-raja.jpg" alt="Raja Ferry" class="w-full h-full object-cover"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><i class=\'fas fa-ship text-white text-6xl\'></i></div>'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Raja Ferry API Integration</h3>
+                        <p class="text-gray-600 mb-4">Backend integration for Raja Ferry API managing transportation services with booking and payment status handling.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">ASP.NET</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">MySQL</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">API Integration</span>
+                        </div>
+                        <p class="text-sm text-gray-500">May 2025 - Aug 2025</p>
+                    </div>
+                </div>
+
+                <!-- Project 5: MPay Payment -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden bg-gradient-to-br from-red-500 to-pink-600">
+                        <img src="assets/images/project-mpay.jpg" alt="MPay Payment" class="w-full h-full object-cover"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><i class=\'fas fa-credit-card text-white text-6xl\'></i></div>'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">MPay Payment Integration</h3>
+                        <p class="text-gray-600 mb-4">Secure payment API integration using Flask and MPay One API for online payment processing with transaction management.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Flask</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">MySQL</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">Payment Gateway</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Apr 2025 - May 2025</p>
+                    </div>
+                </div>
+
+                <!-- Project 6: Portfolio Website -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden bg-gradient-to-br from-purple-500 to-indigo-600">
+                        <img src="assets/images/project-portfolio.jpg" alt="Portfolio" class="w-full h-full object-cover"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><i class=\'fas fa-laptop-code text-white text-6xl\'></i></div>'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Personal Portfolio Website</h3>
+                        <p class="text-gray-600 mb-4">Modern, responsive portfolio website with contact form integration and smooth animations built with Tailwind CSS.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm">HTML5</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">JavaScript</span>
+                        </div>
+                        <p class="text-sm text-gray-500">2025</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto max-w-5xl fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Experience & Certifications</h2>
+            
+            <!-- Timeline -->
+            <div class="space-y-8">
+                
+                <!-- Experience 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-indigo-600">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Freelance Developer</h3>
+                            <p class="text-indigo-600 font-semibold">Full-Stack & Backend Projects</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">Oct 2025 - Present</span>
+                    </div>
+                    <p class="text-gray-600">Building production-ready applications including PMS systems, payment integrations, and booking APIs using Django, Flask, and ASP.NET.</p>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-600">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Technical Support</h3>
+                            <p class="text-purple-600 font-semibold">Ken-Corporation Co., Ltd., Thailand</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">Nov 2024 - Feb 2025</span>
+                    </div>
+                    <p class="text-gray-600">Managed MikroTik routers, POS systems, CCTV, and Zabbix server monitoring for comprehensive IT infrastructure support.</p>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-600">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">IT Specialist</h3>
+                            <p class="text-blue-600 font-semibold">Factory Direct Whole Sales Co., Ltd (FDW)</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">Dec 2022 - Jul 2024</span>
+                    </div>
+                    <p class="text-gray-600">Led IT operations, network configurations, security implementations, and innovation projects improving IT services efficiency.</p>
+                </div>
+
+                <!-- Experience 4 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-600">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Senior Network Service Desk</h3>
+                            <p class="text-green-600 font-semibold">AGB Communication (ISP)</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">Nov 2018 - Oct 2022</span>
+                    </div>
+                    <p class="text-gray-600">Network troubleshooting, MikroTik configuration, team leadership, and complaint ticketing system management.</p>
+                </div>
+
+            </div>
+
+            <!-- Certifications -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800">Certifications</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-indigo-500">
+                        <i class="fas fa-certificate text-indigo-600 text-2xl mb-2"></i>
+                        <p class="font-semibold">ITIL3 Foundation</p>
+                        <p class="text-sm text-gray-600">MCIA</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <i class="fas fa-certificate text-blue-600 text-2xl mb-2"></i>
+                        <p class="font-semibold">Google IT Support Professional</p>
+                        <p class="text-sm text-gray-600">Google</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-purple-500">
+                        <i class="fas fa-certificate text-purple-600 text-2xl mb-2"></i>
+                        <p class="font-semibold">Python For Everybody</p>
+                        <p class="text-sm text-gray-600">Michigan University</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-red-500">
+                        <i class="fas fa-certificate text-red-600 text-2xl mb-2"></i>
+                        <p class="font-semibold">Python for Cyber Security</p>
+                        <p class="text-sm text-gray-600">INFOSEC</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-green-500">
+                        <i class="fas fa-certificate text-green-600 text-2xl mb-2"></i>
+                        <p class="font-semibold">Google Project Management</p>
+                        <p class="text-sm text-gray-600">Google</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <i class="fas fa-certificate text-yellow-600 text-2xl mb-2"></i>
+                        <p class="font-semibold">Network Engineering Diploma</p>
+                        <p class="text-sm text-gray-600">Yangon University</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-white">
+        <div class="container mx-auto max-w-2xl fade-in">
+            <h2 class="text-4xl font-bold text-center mb-4 gradient-text">Get In Touch</h2>
+            <p class="text-center text-gray-600 mb-12">Have a project in mind? Let's work together!</p>
+            
+            <form id="contact-form" class="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-2xl shadow-lg">
+                <div class="mb-6">
+                    <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+                    <input type="text" id="name" name="name" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition">
+                </div>
+                
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition">
+                </div>
+                
+                <div class="mb-6">
+                    <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
+                    <textarea id="message" name="message" rows="5" required
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition resize-none"></textarea>
+                </div>
+                
+                <button type="submit" id="submit-btn"
+                        class="btn-primary w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition flex items-center justify-center">
+                    <span id="btn-text">Send Message</span>
+                    <i id="btn-spinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                </button>
+            </form>
+
+            <!-- Contact Info -->
+            <div class="mt-12 grid md:grid-cols-3 gap-6">
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <i class="fas fa-phone text-3xl text-indigo-600 mb-3"></i>
+                    <p class="font-semibold mb-1">Phone</p>
+                    <p class="text-gray-600 text-sm">+66 969347540</p>
+                    <p class="text-gray-600 text-sm">+66 0618519347</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <i class="fas fa-envelope text-3xl text-indigo-600 mb-3"></i>
+                    <p class="font-semibold mb-1">Email</p>
+                    <p class="text-gray-600 text-sm break-all">contact@pyaephyothein.dev</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <i class="fas fa-map-marker-alt text-3xl text-indigo-600 mb-3"></i>
+                    <p class="font-semibold mb-1">Location</p>
+                    <p class="text-gray-600 text-sm">Bangkok, Thailand</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-6">
+        <div class="container mx-auto text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://github.com/pyaephyothein" target="_blank" class="hover:text-indigo-400 transition">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="tel:+66969347540" class="hover:text-indigo-400 transition">
+                    <i class="fas fa-phone text-2xl"></i>
+                </a>
+                <a href="mailto:contact@pyaephyothein.dev" class="hover:text-indigo-400 transition">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+            </div>
+            <p class="text-gray-400">&copy; 2025 Pyae Phyo Thein. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Notification Element -->
+    <div id="notification" class="notification"></div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
